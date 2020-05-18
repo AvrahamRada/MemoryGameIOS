@@ -216,6 +216,7 @@
                         <outlet property="flipCountrLabel" destination="cJj-NN-Cgb" id="8Xo-j7-s2k"/>
                         <outlet property="labelCongrats" destination="ijT-nG-1ZH" id="OqK-ex-2Tf"/>
                         <outlet property="labelScore" destination="2eK-0E-T6K" id="zl1-et-2j6"/>
+                        <outlet property="newGameBtn" destination="Pfw-yY-Wcb" id="RMf-Uw-h3g"/>
                         <outletCollection property="cardButtons" destination="bk5-hj-Gfe" collectionClass="NSMutableArray" id="v9k-M8-DMH"/>
                         <outletCollection property="cardButtons" destination="dvC-Vp-5kP" collectionClass="NSMutableArray" id="x3A-ab-uTV"/>
                         <outletCollection property="cardButtons" destination="s0R-NL-avZ" collectionClass="NSMutableArray" id="dZr-x7-Fs1"/>

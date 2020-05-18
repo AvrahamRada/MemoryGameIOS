@@ -10,9 +10,18 @@ class ViewController: UIViewController {
     
     @IBOutlet var cardButtons: [UIButton]!
     
+    @IBOutlet weak var newGameBtn: UIButton!
+
     @IBOutlet weak var labelScore: UILabel!
     @IBOutlet weak var labelCongrats: UILabel!
     @IBOutlet weak var flipCountrLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        newGameBtn.layer.cornerRadius = 12.0
+        updateViewFromModel()
+        
+    }
     
 
     // New Game
@@ -33,15 +42,16 @@ class ViewController: UIViewController {
             print("chosen card was not in cardButtons")
         }
     }
-    /// verifies that the cards are matching and make sure all the cards match
+    // verifies that the cards are matching and make sure all the cards match
     func updateViewFromModel(){
         for index in cardButtons.indices{
             let card = game.cards[index] // get the coresponding card from model
             let button = cardButtons[index]
+            button.layer.cornerRadius = 12.0
             
             if card.isFaceDown {
                 button.setTitle(cheatsEnabled ? emoji(for: card) : "", for: UIControl.State.normal)
-                button.backgroundColor = card.isMatched ?  ( !cheatsEnabled ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 0.3961542694) ): #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1) //
+                button.backgroundColor = card.isMatched ?  ( !cheatsEnabled ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 0.3961542694) ): #colorLiteral(red: 0.2039215686, green: 0.7803921569, blue: 0.3490196078, alpha: 1)
             } else {
                 button.setTitle(emoji(for: card), for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -56,7 +66,6 @@ class ViewController: UIViewController {
                 if !cheatsEnabled {
                     cardButtons[index].setTitle("", for: UIControl.State.normal)
                 }
-                
             }
             flipCountrLabel.text = ""
             labelCongrats.text  = "Done. more?"
@@ -64,7 +73,6 @@ class ViewController: UIViewController {
         } else {
             labelCongrats.isHidden = true
         }
-            
     }
     
     lazy var emojiChoices = setTheme()
