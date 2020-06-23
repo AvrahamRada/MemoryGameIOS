@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dSm-Gn-yef">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -237,7 +237,112 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118.84057971014494" y="101.78571428571428"/>
+            <point key="canvasLocation" x="-542" y="-573"/>
+        </scene>
+        <!--Opening View Controller-->
+        <scene sceneID="h8M-7h-2FP">
+            <objects>
+                <viewController id="dSm-Gn-yef" customClass="OpeningViewController" customModule="Concentration_Storyboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0wd-1b-Ieh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emoji's Memory Game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G10-HG-7FX">
+                                <rect key="frame" x="40" y="64" width="334" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dqh-AZ-7wd" userLabel="NameLinearView">
+                                <rect key="frame" x="40" y="170" width="334" height="74.333333333333329"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lM-QN-KPm" userLabel="nameLBL">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="nama here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uhc-UW-KTj" userLabel="nameTXT">
+                                        <rect key="frame" x="0.0" y="40.333333333333343" width="334" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="cdg-rF-LYY" userLabel="BTNLinearView">
+                                <rect key="frame" x="40" y="379" width="334" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiH-cr-ArV" userLabel="playBTN">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="32"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="PLAY"/>
+                                        <connections>
+                                            <action selector="onPlayButtonPressed:" destination="dSm-Gn-yef" eventType="touchUpInside" id="CPJ-EA-8WQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDx-SI-dss" userLabel="top10BTN">
+                                        <rect key="frame" x="0.0" y="38" width="334" height="32"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="TOP 10"/>
+                                        <connections>
+                                            <action selector="onTop10ButtonPressed:" destination="dSm-Gn-yef" eventType="touchUpInside" id="Ard-Vf-cFE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="G10-HG-7FX" firstAttribute="centerX" secondItem="0wd-1b-Ieh" secondAttribute="centerX" id="11S-Y0-YMe"/>
+                            <constraint firstItem="VWg-VP-mOB" firstAttribute="trailing" secondItem="G10-HG-7FX" secondAttribute="trailing" constant="40" id="37Q-1T-eXJ"/>
+                            <constraint firstItem="cdg-rF-LYY" firstAttribute="centerX" secondItem="0wd-1b-Ieh" secondAttribute="centerX" id="3rh-o0-fzu"/>
+                            <constraint firstItem="G10-HG-7FX" firstAttribute="top" secondItem="VWg-VP-mOB" secondAttribute="top" constant="20" id="C7E-AD-7eN"/>
+                            <constraint firstItem="cdg-rF-LYY" firstAttribute="top" secondItem="dqh-AZ-7wd" secondAttribute="bottom" constant="120" id="IeD-7Z-wdd"/>
+                            <constraint firstItem="dqh-AZ-7wd" firstAttribute="leading" secondItem="VWg-VP-mOB" secondAttribute="leading" constant="40" id="OQy-ix-wqS"/>
+                            <constraint firstItem="cdg-rF-LYY" firstAttribute="leading" secondItem="VWg-VP-mOB" secondAttribute="leading" constant="40" id="PtD-cr-A6N"/>
+                            <constraint firstItem="VWg-VP-mOB" firstAttribute="trailing" secondItem="cdg-rF-LYY" secondAttribute="trailing" constant="40" id="RWw-gJ-Gbf"/>
+                            <constraint firstItem="VWg-VP-mOB" firstAttribute="trailing" secondItem="dqh-AZ-7wd" secondAttribute="trailing" constant="40" id="cD2-DI-6PG"/>
+                            <constraint firstItem="G10-HG-7FX" firstAttribute="leading" secondItem="VWg-VP-mOB" secondAttribute="leading" constant="40" id="t22-Z3-GhI"/>
+                            <constraint firstItem="dqh-AZ-7wd" firstAttribute="centerX" secondItem="0wd-1b-Ieh" secondAttribute="centerX" id="vbm-EG-93P"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VWg-VP-mOB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JOS-3r-T1n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1396" y="-573"/>
+        </scene>
+        <!--Game Controller-->
+        <scene sceneID="yCM-Vl-kS6">
+            <objects>
+                <viewController id="4PN-8T-tRm" customClass="GameController" customModule="Concentration_Storyboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yKi-0h-uLn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="N2H-Nr-WFn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9e6-8K-sxk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="262" y="-573"/>
+        </scene>
+        <!--Top10 Controller-->
+        <scene sceneID="JRp-5k-qYG">
+            <objects>
+                <viewController id="aR3-WC-ACo" customClass="Top10Controller" customModule="Concentration_Storyboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1NO-2a-cFa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Aa6-PN-JFU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KzF-iq-6F6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1097" y="-573"/>
         </scene>
     </scenes>
 </document>
