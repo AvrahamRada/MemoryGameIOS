@@ -309,6 +309,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VWg-VP-mOB"/>
                     </view>
+                    <connections>
+                        <segue destination="4PN-8T-tRm" kind="presentation" identifier="goToGameView" modalPresentationStyle="fullScreen" id="Wus-7X-UR1"/>
+                        <segue destination="aR3-WC-ACo" kind="presentation" identifier="goToTop10View" modalPresentationStyle="fullScreen" id="jvb-iV-oaz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOS-3r-T1n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

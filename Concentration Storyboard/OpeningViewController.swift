@@ -43,13 +43,13 @@ class OpeningViewController: UIViewController {
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "goToNamePage"){
+        if(segue.identifier == "goToGameView"){
             //let namePage = segue.destination as! NameController
             //namePage.difficult = difficult
             //namePage.myLocation = myLocation
             
             
-        } else if(segue.identifier == "goToScoresPage"){
+        } else if(segue.identifier == "goToTop10View"){
            // _ = segue.destination as! ScoresController
             
         }
