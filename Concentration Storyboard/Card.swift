@@ -1,26 +1,83 @@
-// ** Name: Avraham Rada  **
-// ** ID: 309539674       **
+// ****************************************************
+// ******************  Avraham Rada  ******************
+// ******************    309539674   ******************
+// ****************************************************
 
 import Foundation
+import UIKit
 
-struct Card{
-    var isFaceDown = true
-    var isMatched = false
-    var identifier: Int
+class Card: UIButton {
     
-    static var identifierFactory = 0
+    //  MARK: Variables
+    var front : UIImage!;
+    var back : UIImage = #imageLiteral(resourceName: "ic_card")
+    var isFlipped : Bool = false;
     
-    static func getUniqueIdentifier() -> Int {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame);
+        setBackgroundImage(back, for: UIControl.State.normal);
+    }
+    
+    func flip() {
         
-        identifierFactory += 1
-        return identifierFactory
+        if(isFlipped){
+            
+            // Flip the card back
+            UIView.transition(with: self, duration: 0.3, options: .transitionFlipFromRight, animations: {
+                self.setBackgroundImage(self.back, for: UIControl.State.normal);
+            })
+        
+            isFlipped = false;
+            
+        } else {
+            
+            // Flip the card to his front
+            UIView.transition(with: self, duration: 0.3, options: .transitionFlipFromLeft, animations: {
+                self.setBackgroundImage(self.front, for: UIControl.State.normal);
+            })
+            
+             isFlipped = true;
+        }
     }
     
-    static func resetIdentifiers(){
-        identifierFactory = 0
+    func remove() {
+            
+        UIView.animate(withDuration: 0.3,delay: 0.7, options: .curveEaseOut, animations: {
+            self.alpha = 0;
+        })
+        
     }
     
-    init(){
-        self.identifier = Card.getUniqueIdentifier()
+    func add() {
+        
+        self.alpha = 1;
     }
+    
 }
+
+
+//struct Card{
+//    var isFaceDown = true
+//    var isMatched = false
+//    var identifier: Int
+//
+//    static var identifierFactory = 0
+//
+//    static func getUniqueIdentifier() -> Int {
+//
+//        identifierFactory += 1
+//        return identifierFactory
+//    }
+//
+//    static func resetIdentifiers(){
+//        identifierFactory = 0
+//    }
+//
+//    init(){
+//        self.identifier = Card.getUniqueIdentifier()
+//    }
+//}

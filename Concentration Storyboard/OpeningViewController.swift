@@ -1,75 +1,74 @@
+// ****************************************************
+// ******************  Avraham Rada  ******************
+// ******************    309539674   ******************
+// ****************************************************
+
 import UIKit
 import CoreLocation
 
 class OpeningViewController: UIViewController {
-    
-    
-    //@IBOutlet weak var menu_BTN_easy: UIButton!
-    //@IBOutlet weak var menu_BTN_hard: UIButton!
-    //@IBOutlet weak var menu_BTN_scores: UIButton!
-    
-    //let EASY_MODE = "Easy"
-    //let HARD_MODE = "Hard"
-    //var difficult : String?;
+
+    //  MARK: Variables
+    var name : String!
+    var myLocation : MyLocation!
     var locationManager: CLLocationManager!
-    //var myLocation : MyLocation!
     
+    //  MARK: IBOutlet
+    @IBOutlet weak var name_TEXTFIELD_nameHolder: UITextField!
+    
+    // MARK: onCreate()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager = CLLocationManager()
-        locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
         locationManager.requestLocation()
-        
-        // Do any additional setup after loading the view.
     }
     
-    
+    // MARK: onClick_01()
     @IBAction func onPlayButtonPressed(_ sender: UIButton) {
-        
-        //difficult = sender.titleLabel!.text
-        
-        //self.performSegue(withIdentifier: "goToNamePage", sender: self)
-        
+        name = name_TEXTFIELD_nameHolder.text
+        if(name.isEmpty){
+            name = "DEMO PLAYER"
+        }
+        self.performSegue(withIdentifier: "goToGameView", sender: self)
     }
     
-    
+    // MARK: onClick_02()
     @IBAction func onTop10ButtonPressed(_ sender: UIButton) {
-        
-        //self.performSegue(withIdentifier: "goToScoresPage", sender: self)
+        self.performSegue(withIdentifier: "goToTop10View", sender: self)
     }
     
-    
-    //MARK: Navigation
+    //MARK: Navigation == Intent(Android)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "goToGameView"){
-            //let namePage = segue.destination as! NameController
-            //namePage.difficult = difficult
-            //namePage.myLocation = myLocation
-            
+            let gameView = segue.destination as! GameController
+            gameView.name = name
+            gameView.myLocation = self.myLocation
+            gameView.numOfRows = 4
+            gameView.numOfCardsPerRow = 4
             
         } else if(segue.identifier == "goToTop10View"){
-           // _ = segue.destination as! ScoresController
-            
+            _ = segue.destination as! Top10Controller
         }
     }
 }
 
+//  MARK: Extension
 extension OpeningViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //print("didUpdateLocations")
-
-        /*if let location = locations.last {
+        if let location = locations.last {
             locationManager.stopUpdatingLocation()
             self.myLocation = MyLocation(lat:location.coordinate.latitude, lng: location.coordinate.latitude)
             print("got Location: \(String(describing: myLocation.lat)) \(String(describing: myLocation.lng))")
-        }*/
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        //print("Error=\(error)")
-        //self.myLocation = MyLocation(lat: 0, lng: 0)
+        print("Error=\(error)")
+        // Default location - in case of an ERROR
+        self.myLocation = MyLocation(lat:31.92933, lng: 34.79868)
     }
 }
