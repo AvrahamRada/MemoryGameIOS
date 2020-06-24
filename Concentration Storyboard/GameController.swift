@@ -121,6 +121,8 @@ class GameController: UIViewController {
 
         var images = [#imageLiteral(resourceName: "ic_emoji_ethiopian_man"),#imageLiteral(resourceName: "ic_emoji_exploding_head"),#imageLiteral(resourceName: "ic_emoji_monkey"),#imageLiteral(resourceName: "ic_emoji__cat_face_with_eart_eyes"),#imageLiteral(resourceName: "ic_emoji_vomiting"),#imageLiteral(resourceName: "ic_emoji_devil"),#imageLiteral(resourceName: "ic_emoji_laugh"),#imageLiteral(resourceName: "ic_emoji_no_mouth")]
         
+        
+        
         //        availableThemes[0] = ["🧥", "🥼", "👚", "👕", "👖", "🧵", "🧶", "👔", "👗", "👙", "👘", "🧢", "🧦", "👡", "👠", "🎩"]
         //        availableThemes[1] = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵"]
         //        availableThemes[2] = ["🐙", "🦑", "🦐", "🦞", "🐡", "🐠", "🐟", "🐋", "🦈", "🐊", "🐳", "🐢", "🐍", "🦎", "🐸", "🦀"]
