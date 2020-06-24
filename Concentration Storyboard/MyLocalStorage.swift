@@ -13,7 +13,6 @@ class MyLocalStorage {
         
         //load the data from local storage and convert it the list of HighScore
         
-        
         //Reset file ofr tests
         //UserDefaults.standard.removePersistentDomain(forName: HIGH_SCORES_KEY)
         
