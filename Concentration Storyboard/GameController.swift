@@ -8,18 +8,13 @@ import AVFoundation
 
 class GameController: UIViewController {
     
+    // MARK:IBOutlet
     @IBOutlet weak var game_LBL_moves: UILabel!
     @IBOutlet weak var game_LBL_timer: UILabel!
-
     @IBOutlet weak var game_STACKVIEW_cardsHolder: UIStackView!
-
     @IBOutlet weak var game_BTN_back: UIButton!
     
-    
-    let MAX_IDENTICAL_CARDS :Int = 2
-    
-    
-    //Variables
+    // MARK:Variables
     var numOfRows : Int!
     var numOfCardsPerRow : Int!
     var numOfCards : Int!
@@ -31,25 +26,22 @@ class GameController: UIViewController {
     var timePassed : Int = 0
     var timePassedText : String! = "0"
     var timerHelper : TimerHelper!
-    var audioPlayer : AVAudioPlayer!
     var name : String!
     var myLocation : MyLocation!
+    let PAIR :Int = 2
     
-    
+    // MARK: onCreate()
     override func viewDidLoad() {
-        
         super.viewDidLoad();
         
         timerHelper = TimerHelper()
         initCards(numOfRows: numOfRows, numOfCardsPerRow: numOfCardsPerRow);
         raffleCards()
-//        playBackgorundMusic()
         startTimer()
         
     }
     
     @IBAction func onBackButtonPressed(_ sender: UIButton) {
-                
        if let nav = self.navigationController {
             nav.popToRootViewController(animated: true)
         } else {
@@ -58,25 +50,19 @@ class GameController: UIViewController {
     }
     
     @IBAction func flip(_ sender: Card) {
-
-        print("im here in flip")
-
         if(!isClickable){
             // Player can't click a card - waiting for other cards to flip
             return
         }
 
         if(sender.isFlipped){
-            //Same card has been clicked.
+            //Some card has been clicked.
             return
-
         }
-
-
         handleCard(sender: sender);
-
     }
 
+    // MARK: initCards()
     func initCards(numOfRows : Int, numOfCardsPerRow : Int){
 
         numOfCards = numOfRows * numOfCardsPerRow;
@@ -94,6 +80,7 @@ class GameController: UIViewController {
         }
     }
 
+    // MARK: createCard()
     func createCard () -> Card {
 
         let newCard : Card = Card()
@@ -102,6 +89,7 @@ class GameController: UIViewController {
         return newCard;
     }
 
+    // MARK: createRow()
     func createRow () -> UIStackView {
 
         let SPACING: CGFloat = 10
@@ -118,10 +106,7 @@ class GameController: UIViewController {
     }
 
     func raffleCards()  {
-
         var images = [#imageLiteral(resourceName: "ic_emoji_ethiopian_man"),#imageLiteral(resourceName: "ic_emoji_exploding_head"),#imageLiteral(resourceName: "ic_emoji_monkey"),#imageLiteral(resourceName: "ic_emoji__cat_face_with_eart_eyes"),#imageLiteral(resourceName: "ic_emoji_vomiting"),#imageLiteral(resourceName: "ic_emoji_devil"),#imageLiteral(resourceName: "ic_emoji_laugh"),#imageLiteral(resourceName: "ic_emoji_no_mouth")]
-        
-        
         
         //        availableThemes[0] = ["🧥", "🥼", "👚", "👕", "👖", "🧵", "🧶", "👔", "👗", "👙", "👘", "🧢", "🧦", "👡", "👠", "🎩"]
         //        availableThemes[1] = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵"]
@@ -140,7 +125,7 @@ class GameController: UIViewController {
 
                 randomIndex = Int.random(in: 0 ..< size);
 
-                if(slots[randomIndex] < MAX_IDENTICAL_CARDS){
+                if(slots[randomIndex] < PAIR){
                     raffle = false;
                     slots[randomIndex] += 1
                     card.front = images[randomIndex]
@@ -190,31 +175,19 @@ class GameController: UIViewController {
     func checkForMatches(sender : Card){
 
         if(sender.front == firstCard!.front){
-
-            //Guess was correct
             playerGuessedRight(sender: sender)
-
         } else {
-
-            //Guess was incorrect
             playerGuessedWrong(sender: sender)
         }
     }
 
     func playerGuessedRight(sender : Card){
-
-
         sender.remove()
         firstCard?.remove()
-
         addMove()
-
         firstCard = nil
-
-
         if(isVictory()){
             self.performSegue(withIdentifier: "goToGameOverView", sender: self)
-            //newGame();
         }
 
         //player can now guess again.
