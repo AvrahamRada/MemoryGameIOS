@@ -98,7 +98,6 @@ class GameOverController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "goToGameView"){
-            print("here man!")
             let gamePage = segue.destination as! GameController
             gamePage.numOfRows = lastGameNumOfRows
             gamePage.numOfCardsPerRow = lastGameNumOfCardsPerRow

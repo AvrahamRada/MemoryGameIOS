@@ -36,11 +36,12 @@ class GameController: UIViewController {
         
         timerHelper = TimerHelper()
         initCards(numOfRows: numOfRows, numOfCardsPerRow: numOfCardsPerRow);
-        raffleCards()
+        arrangeCards() // arraging the cards on the screen
         startTimer()
         
     }
     
+    // MARK: onClickListener_01()
     @IBAction func onBackButtonPressed(_ sender: UIButton) {
        if let nav = self.navigationController {
             nav.popToRootViewController(animated: true)
@@ -64,17 +65,13 @@ class GameController: UIViewController {
 
     // MARK: initCards()
     func initCards(numOfRows : Int, numOfCardsPerRow : Int){
-
         numOfCards = numOfRows * numOfCardsPerRow;
-
         for _ in 0 ..< numOfRows {
-            let row : UIStackView = createRow()
+            let row : UIStackView = createLinearViewWithCards()
             for _ in 0 ..< numOfCardsPerRow {
                 let newCard : Card = createCard()
-                //Adding newCard to row Stackview
-                row.addArrangedSubview(newCard)
-                //Adding newCard to cards Array ref
-                cards.append(newCard)
+                row.addArrangedSubview(newCard) // adding newCard to row Stackview
+                cards.append(newCard) //Adding newCard to cards Array ref
             }
             game_STACKVIEW_cardsHolder.addArrangedSubview(row);
         }
@@ -82,30 +79,27 @@ class GameController: UIViewController {
 
     // MARK: createCard()
     func createCard () -> Card {
-
         let newCard : Card = Card()
         newCard.addTarget(self, action: #selector(flip), for: .touchUpInside);
-
         return newCard;
     }
 
     // MARK: createRow()
-    func createRow () -> UIStackView {
-
-        let SPACING: CGFloat = 10
-        let row = UIStackView()
-
+    func createLinearViewWithCards () -> UIStackView {
+        let s: CGFloat = 4
+        let row = UIStackView() // create linearView
         row.axis = .horizontal
         row.alignment = .fill
         row.distribution = .fillEqually
-        row.spacing = SPACING
+        row.spacing = s
         row.contentMode = .scaleToFill
         row.translatesAutoresizingMaskIntoConstraints = false
 
         return row;
     }
 
-    func raffleCards()  {
+    // MARK: arrangeCards()
+    func arrangeCards()  {
         var images = [#imageLiteral(resourceName: "ic_emoji_ethiopian_man"),#imageLiteral(resourceName: "ic_emoji_exploding_head"),#imageLiteral(resourceName: "ic_emoji_monkey"),#imageLiteral(resourceName: "ic_emoji__cat_face_with_eart_eyes"),#imageLiteral(resourceName: "ic_emoji_vomiting"),#imageLiteral(resourceName: "ic_emoji_devil"),#imageLiteral(resourceName: "ic_emoji_laugh"),#imageLiteral(resourceName: "ic_emoji_no_mouth")]
         
         //        availableThemes[0] = ["🧥", "🥼", "👚", "👕", "👖", "🧵", "🧶", "👔", "👗", "👙", "👘", "🧢", "🧦", "👡", "👠", "🎩"]
@@ -118,10 +112,9 @@ class GameController: UIViewController {
         var slots = [Int](repeating: 0, count: size)
         var randomIndex : Int
 
+        for card in cards {
 
-        for card in cards{
-
-            while(raffle){
+            while (raffle) {
 
                 randomIndex = Int.random(in: 0 ..< size);
 
@@ -228,10 +221,6 @@ class GameController: UIViewController {
 
     }
 
-
-
-
-
     func isVictory() -> Bool {
 
         for card in cards {
@@ -249,7 +238,7 @@ class GameController: UIViewController {
         resetMoves()
         resetTimer()
         resetFliped()
-        raffleCards()
+        arrangeCards()
     }
 
     func resertCards() {
