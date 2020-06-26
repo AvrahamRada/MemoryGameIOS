@@ -46,6 +46,7 @@ class OpeningViewController: UIViewController {
             let gameView = segue.destination as! GameController
             gameView.name = name
             gameView.myLocation = self.myLocation
+            print("****************************************\(self.myLocation)")
             gameView.numOfRows = 4
             gameView.numOfCardsPerRow = 4
             

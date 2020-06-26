@@ -26,13 +26,13 @@ class Card: UIButton {
     func flip() {
         if(isFlipped){
             // Flip the card back
-            UIView.transition(with: self, duration: 0.3, options: .transitionFlipFromRight, animations: {
+            UIView.transition(with: self, duration: 0.3, options: .transitionFlipFromTop, animations: {
                 self.setBackgroundImage(self.back, for: UIControl.State.normal);
             })
             isFlipped = false;
         } else {
             // Flip the card to his front
-            UIView.transition(with: self, duration: 0.3, options: .transitionFlipFromLeft, animations: {
+            UIView.transition(with: self, duration: 0.3, options: .transitionFlipFromBottom, animations: {
                 self.setBackgroundImage(self.front, for: UIControl.State.normal);
             })
              isFlipped = true;

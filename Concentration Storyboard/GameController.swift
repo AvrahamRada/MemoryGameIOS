@@ -38,7 +38,6 @@ class GameController: UIViewController {
         initCards(numOfRows: numOfRows, numOfCardsPerRow: numOfCardsPerRow);
         arrangeCards() // arraging the cards on the screen
         startTimer()
-        
     }
     
     // MARK: onClickListener_01()
@@ -50,17 +49,21 @@ class GameController: UIViewController {
         }
     }
     
+    // MARK: onClickListener_02()
     @IBAction func flip(_ sender: Card) {
-        if(!isClickable){
-            // Player can't click a card - waiting for other cards to flip
-            return
+//        if(!isClickable){
+//            // Player can't click a card - waiting for other cards to flip
+//            return
+//        }
+//
+//        if(sender.isFlipped){
+//            //Some card has been clicked.
+//            return
+//        }
+//        handleCard(sender: sender);
+        if(!(!isClickable || sender.isFlipped)){
+            handleCard(sender: sender)
         }
-
-        if(sender.isFlipped){
-            //Some card has been clicked.
-            return
-        }
-        handleCard(sender: sender);
     }
 
     // MARK: initCards()
@@ -101,23 +104,19 @@ class GameController: UIViewController {
     // MARK: arrangeCards()
     func arrangeCards()  {
         var images = [#imageLiteral(resourceName: "ic_emoji_ethiopian_man"),#imageLiteral(resourceName: "ic_emoji_exploding_head"),#imageLiteral(resourceName: "ic_emoji_monkey"),#imageLiteral(resourceName: "ic_emoji__cat_face_with_eart_eyes"),#imageLiteral(resourceName: "ic_emoji_vomiting"),#imageLiteral(resourceName: "ic_emoji_devil"),#imageLiteral(resourceName: "ic_emoji_laugh"),#imageLiteral(resourceName: "ic_emoji_no_mouth")]
-        
-        //        availableThemes[0] = ["🧥", "🥼", "👚", "👕", "👖", "🧵", "🧶", "👔", "👗", "👙", "👘", "🧢", "🧦", "👡", "👠", "🎩"]
-        //        availableThemes[1] = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵"]
-        //        availableThemes[2] = ["🐙", "🦑", "🦐", "🦞", "🐡", "🐠", "🐟", "🐋", "🦈", "🐊", "🐳", "🐢", "🐍", "🦎", "🐸", "🦀"]
-        //        availableThemes[3] = ["🌵", "🌲", "🌳", "🌴", "🌱", "🌿", "☘", "🎍", "🎋", "🍃", "🍂", "🍁", "🍄", "🌾", "🎄", "🍀"]
-        //        availableThemes[4] = ["🍏", "🍎", "🍐", "🍋", "🍌", "🍇", "🍓", "🍈", "🍒", "🥭", "🍍", "🥥", "🥝", "🍅", "🍑", "🍉"]
+//      availableThemes[0] = ["🧥", "🥼", "👚", "👕", "👖", "🧵", "🧶", "👔", "👗", "👙", "👘", "🧢", "🧦", "👡", "👠", "🎩"]
+//      availableThemes[1] = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵"]
+//      availableThemes[2] = ["🐙", "🦑", "🦐", "🦞", "🐡", "🐠", "🐟", "🐋", "🦈", "🐊", "🐳", "🐢", "🐍", "🦎", "🐸", "🦀"]
+//      availableThemes[3] = ["🌵", "🌲", "🌳", "🌴", "🌱", "🌿", "☘", "🎍", "🎋", "🍃", "🍂", "🍁", "🍄", "🌾", "🎄", "🍀"]
+//      availableThemes[4] = ["🍏", "🍎", "🍐", "🍋", "🍌", "🍇", "🍓", "🍈", "🍒", "🥭", "🍍", "🥥", "🥝", "🍅", "🍑", "🍉"]
         
         var size = numOfCards / 2
         var slots = [Int](repeating: 0, count: size)
         var randomIndex : Int
 
         for card in cards {
-
             while (raffle) {
-
-                randomIndex = Int.random(in: 0 ..< size);
-
+                randomIndex = Int.random(in: 0 ..< size)
                 if(slots[randomIndex] < PAIR){
                     raffle = false;
                     slots[randomIndex] += 1
@@ -127,102 +126,76 @@ class GameController: UIViewController {
                     images.remove(at: randomIndex)
                     slots.remove(at: randomIndex)
                     size -= 1
-
                 }
             }
-            // Reset for next round.
-            raffle = true;
+            raffle = true // Reset for next round.
         }
-
     }
 
+    // MARK: moves++
     func addMove() {
-
-        moves += 1;
+        moves += 1
         game_LBL_moves.text  = String(moves)
-
     }
-
+    
+    // MARK: cardClicked()
     func handleCard(sender : Card){
-
+        // Card #1
         if(firstCard == nil){
-            //flip the first card
-            sender.flip()
-
+            sender.flip() //flip first card to reveal his image.
             firstCard = sender
-
-            //flip first card to reveal his image.
-
         } else {
-
-            //flip second card to reveal his image.
-            sender.flip()
-
+            // Card #2
+            sender.flip() //flip second card to reveal his image.
             isClickable = false;
-
-            checkForMatches(sender: sender)
-
+            checkIfEquals(sender: sender) // Match ?
         }
     }
 
-    func checkForMatches(sender : Card){
-
+    // MARK: checkIfEquals()
+    func checkIfEquals(sender : Card){
         if(sender.front == firstCard!.front){
-            playerGuessedRight(sender: sender)
+            match(sender: sender)
         } else {
-            playerGuessedWrong(sender: sender)
+            wrong(sender: sender)
         }
     }
 
-    func playerGuessedRight(sender : Card){
+    // MARK: match()
+    func match(sender : Card){
         sender.remove()
         firstCard?.remove()
         addMove()
         firstCard = nil
-        if(isVictory()){
+        if(isThereAWinner()){
             self.performSegue(withIdentifier: "goToGameOverView", sender: self)
         }
-
-        //player can now guess again.
-        isClickable = true;
-
+        isClickable = true // player can now guess again.
     }
 
-
-    func playerGuessedWrong(sender : Card) {
-
+    // MARK: wrong()
+    func wrong(sender : Card) {
         addMove()
         //Delay for 2 seconds when revealing the second card.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2 ) {
-
-            // flip the cards back
-            self.firstCard!.flip()
+            self.firstCard!.flip() // flip the cards back
             sender.flip()
-
-            // Player can guess again
-            self.isClickable = true
-
-            // Reset first card
-            self.firstCard = nil
-
+            self.isClickable = true // Guess again
+            self.firstCard = nil // First card RESET
         }
     }
 
+    // Mark: Start clocking
     func startTimer() {
-
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-
             self.timePassed += 1
             self.timePassedText =  self.timerHelper.convertTimeToMinutesAndSeconds(timePassed: self.timePassed)
-            self.game_LBL_timer.text = self.timePassedText
-
-
+            self.game_LBL_timer.text = String(self.timePassedText)
         }
-
     }
-
-    func isVictory() -> Bool {
-
+    
+    // MARK: win ?
+    func isThereAWinner() -> Bool {
         for card in cards {
             if(!card.isFlipped){
                 return false
@@ -231,20 +204,18 @@ class GameController: UIViewController {
         return true
     }
 
-
+    // MARK: NEW GAME
     func newGame () {
-
-        resertCards()
+        resetCards() // New game arrange
         resetMoves()
         resetTimer()
         resetFliped()
         arrangeCards()
     }
 
-    func resertCards() {
-
+    // MARK: RESET SCREEN
+    func resetCards() {
         for card in cards {
-
             card.flip()
             card.add()
         }
@@ -257,35 +228,26 @@ class GameController: UIViewController {
     }
 
     func resetMoves() {
-
-        moves = 0
+        self.moves = 0
         game_LBL_moves.text  = String(moves)
-
     }
 
     func resetTimer() {
-
-        timePassed = 0
+        self.timePassed = 0
         game_LBL_timer.text  = String(timePassed)
-
     }
 
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "goToGameOverView"){
-            let gameOverPage = segue.destination as! GameOverController
+            let gameOver = segue.destination as! GameOverController
             //Set the game parameters
-            gameOverPage.time = timePassed
-            gameOverPage.moves = moves
-            gameOverPage.lastGameNumOfRows = numOfRows
-            gameOverPage.lastGameNumOfCardsPerRow = numOfCardsPerRow
-            print(Date())
-            print(timePassed)
-            print(myLocation)
-            gameOverPage.userHighScore = HighScore(name: name, time: timePassed, location: myLocation,date: Date())
+            gameOver.time = timePassed
+            gameOver.moves = moves
+            gameOver.lastGameNumOfRows = numOfRows
+            gameOver.lastGameNumOfCardsPerRow = numOfCardsPerRow
+            gameOver.userHighScore = HighScore(name: name, time: timePassed, location: myLocation,date: Date())
         }
     }
-
-
 }
 
