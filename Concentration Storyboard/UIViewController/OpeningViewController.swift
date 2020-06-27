@@ -16,7 +16,6 @@ class OpeningViewController: UIViewController {
     let SOFT_MODE = 4
     let KILLER_MODE = 6
     
-    
     //  MARK: IBOutlet
     @IBOutlet weak var name_TEXTFIELD_nameHolder: UITextField!
     @IBOutlet weak var opening_BTN_soft: UIButton!
