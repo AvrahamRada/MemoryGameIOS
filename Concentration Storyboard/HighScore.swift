@@ -13,14 +13,10 @@ class HighScore : Codable{
     var location : MyLocation
     var date : Date
 
-    
     init(name : String, time : Int, location: MyLocation,date : Date) {
-        
         self.name = name
         self.time = time
         self.location = location
         self.date = date
-        
     }
-    
 }

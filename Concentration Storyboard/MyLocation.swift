@@ -3,9 +3,7 @@
 // ******************    309539674   ******************
 // ****************************************************
 
-
 import Foundation
-
 
 class MyLocation : Codable {
     
@@ -13,10 +11,7 @@ class MyLocation : Codable {
     var lng : Double?
     
     init(lat : Double, lng : Double) {
-        
         self.lat = lat
         self.lng = lng
     }
-    
-    
 }

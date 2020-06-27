@@ -57,6 +57,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2625DE5724A6318100F051B3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				26FF326B24A267720073D0FC /* Converter.swift */,
+				26FF326524A267080073D0FC /* TimerHelper.swift */,
+				26FF326924A2674C0073D0FC /* MyLocalStorage.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2625DE5824A6320500F051B3 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				26FF325D24A21EF60073D0FC /* OpeningViewController.swift */,
+				26FF325F24A257930073D0FC /* GameController.swift */,
+				26FF326124A257B90073D0FC /* Top10Controller.swift */,
+				26FF326F24A267E50073D0FC /* GameOverController.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
 		D35C306623B16ECC0050E817 = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +97,8 @@
 		D35C307123B16ECC0050E817 /* Concentration Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				26FF325D24A21EF60073D0FC /* OpeningViewController.swift */,
+				2625DE5824A6320500F051B3 /* UIViewController */,
+				2625DE5724A6318100F051B3 /* Utils */,
 				D36C523523B25AC9008334F1 /* Card.swift */,
 				D35C307823B16ECC0050E817 /* Main.storyboard */,
 				D35C307223B16ECC0050E817 /* AppDelegate.swift */,
@@ -84,14 +106,8 @@
 				D35C307D23B16ECD0050E817 /* LaunchScreen.storyboard */,
 				D35C307423B16ECC0050E817 /* SceneDelegate.swift */,
 				D35C308023B16ECD0050E817 /* Info.plist */,
-				26FF325F24A257930073D0FC /* GameController.swift */,
-				26FF326124A257B90073D0FC /* Top10Controller.swift */,
 				26FF326324A266C10073D0FC /* MyCustomCell.swift */,
-				26FF326524A267080073D0FC /* TimerHelper.swift */,
 				26FF326724A267280073D0FC /* MyLocation.swift */,
-				26FF326924A2674C0073D0FC /* MyLocalStorage.swift */,
-				26FF326B24A267720073D0FC /* Converter.swift */,
-				26FF326F24A267E50073D0FC /* GameOverController.swift */,
 				26FF327124A2680C0073D0FC /* HighScore.swift */,
 			);
 			path = "Concentration Storyboard";
