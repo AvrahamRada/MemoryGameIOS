@@ -13,8 +13,8 @@ class GameOverController: UIViewController {
     @IBOutlet weak var gameover_LBL_moves: UILabel!
     @IBOutlet weak var gameover_LBL_time: UILabel!
     
-    let RESTART : String = "Restart"
-    let NEW_GAME : String = "New Game"
+    let RESTART : String = "RESTART"
+    let NEW_GAME : String = "NEW GAME"
     
     
     var moves : Int!

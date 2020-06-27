@@ -18,23 +18,20 @@ class Top10Controller: UIViewController, UITableViewDelegate, UITableViewDataSou
     let cellReuseIdentifier = "score_cell"
     var newCamera: MKMapCamera!
     
-    
+    //MARK: onCreate()
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
         //Read from local storage the highscores
         scores_MAPVIEW_map.showsUserLocation = true
         //Set the corner of the map to be rounded.
-        scores_MAPVIEW_map.layer.cornerRadius = 25.0
+        scores_MAPVIEW_map.layer.cornerRadius = 0.0
         highScores = MyLocalStorage.getDataFromLocalStorage()
         addAnnotationPoints()
         setupList()
-        
     }
     
     @IBAction func onBackButtonPressed(_ sender: UIButton) {
-        
-        
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {
@@ -44,35 +41,23 @@ class Top10Controller: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     func addAnnotationPoints(){
-        
-            
         for highScore in highScores{
-            
-            
             let point = MKPointAnnotation()
-            
             let pointlatitude = Double(highScore.location.lat!)
             let pointlongitude = Double(highScore.location.lng!)
             point.title = highScore.name
             
             point.coordinate = CLLocationCoordinate2DMake(pointlatitude ,pointlongitude)
             scores_MAPVIEW_map.addAnnotation(point)
-            
-            
         }
-        
     }
     
     func showAnotation(index : Int){
-        
-
         newCamera = MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: highScores[index].location.lat!, longitude: highScores[index].location.lng!), fromDistance: 500.0, pitch: 90.0, heading: 180.0)
         self.scores_MAPVIEW_map.setCamera(newCamera, animated: true)
-    
     }
     
     func setupList(){
-        
         scores_LST_scores.delegate = self
         scores_LST_scores.dataSource = self
     }

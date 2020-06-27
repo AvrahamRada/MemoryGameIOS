@@ -35,9 +35,9 @@ class OpeningViewController: UIViewController {
     
     // MARK: onClick_01()
     @IBAction func onPlayButtonPressed(_ sender: UIButton) {
-        name = name_TEXTFIELD_nameHolder.text
-        if(name.isEmpty){
-            name = "DEMO PLAYER"
+        self.name = name_TEXTFIELD_nameHolder.text
+        if(self.name.isEmpty){
+            self.name = "DEMO PLAYER"
         }
         self.performSegue(withIdentifier: "goToGameView", sender: self)
     }
@@ -65,7 +65,7 @@ class OpeningViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "goToGameView"){
             let gameView = segue.destination as! GameController
-            gameView.name = name
+            gameView.name = self.name
             gameView.myLocation = self.myLocation
             gameView.mode = self.mode
             gameView.numOfRows = self.mode
